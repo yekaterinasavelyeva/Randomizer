@@ -1,0 +1,32 @@
+.container {
+    height: 100%;
+    font-size: 20px;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 40px;
+    font-family: "Segoe UI",Arial,sans-serif;
+    color:rgba(36, 43, 56, 1);
+}
+
+img.image {
+    position: absolute;
+    left:0;
+    top: 0;
+    width:100%;
+    height: auto;
+    opacity: 0.5;
+}
+
+.number {
+    font-family: "Comic Sans MS", cursive;
+}
+
+.card {
+    background-color:rgba(239,224,205,0.5);
+}
+
+.random {
+    opacity: 1;
+}
