@@ -8,6 +8,25 @@ h1 {
     font-size: 40px;
     font-family: "Segoe UI",Arial,sans-serif;
     color:rgba(36, 43, 56, 1);
+    padding: 5% 10%;
+}
+
+span {
+    display: inline;
+}
+
+p {
+    padding-left: 20%;
+}
+
+input[type=text]:focus {
+    box-shadow: lavender;
+    outline-color: cadetblue;
+}
+
+input {
+    margin: auto 10%;
+    width: 70%!important;
 }
 
 img.image {
@@ -27,6 +46,42 @@ img.image {
     background-color:rgba(239,224,205,0.5);
 }
 
+.box {
+    display: flex;
+    float: right;
+    margin: 5% 10%;
+}
+
 .random {
     opacity: 1;
+}
+
+.w3-theme-gradient {
+    color: #000 !important;
+    background:-webkit-linear-gradient(top, #a26a7a 25%, #f54242 75%)}
+.w3-theme-gradient {
+    color: #000 !important;
+    background:-moz-linear-gradient(top, #a26a7a 25%, #f54242 75%)}
+.w3-theme-gradient {
+    color: #000 !important;
+    background:-o-linear-gradient(top, #a26a7a 25%, #f54242 75%)}
+.w3-theme-gradient {
+    color: #000 !important;
+    background:-ms-linear-gradient(top, #a26a7a 25%, #f54242 75%)}
+.w3-theme-gradient {
+    color: #000 !important;
+    background: linear-gradient(top, #a26a7a 25%, #f54242 75%)}
+
+.error {
+    color: crimson;
+    font-family: "Lucida Sans Unicode", serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.success {
+    color: forestgreen;
+    font-family: "Lucida Sans Unicode", serif;
+    font-size: 12px;
+    font-weight: bold;
 }

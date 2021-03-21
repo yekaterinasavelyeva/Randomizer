@@ -1,0 +1,43 @@
+.container {
+    height: 100%;
+    font-size: 20px;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 40px;
+    font-family: "Segoe UI",Arial,sans-serif;
+    color:rgba(36, 43, 56, 1);
+    padding: 5% 10%;
+}
+
+img.image {
+    position: absolute;
+    left:0;
+    top: 0;
+    width:100%;
+    height: auto;
+    opacity: 0.5;
+}
+
+.card {
+    background-color:rgba(239,224,205,0.5);
+    width: 30%;
+}
+
+
+.error {
+    color: crimson;
+    font-family: "Lucida Sans Unicode", serif;
+    font-size: 34px;
+    font-weight: bold;
+    padding-left: 20%;
+}
+
+.success {
+    color: forestgreen;
+    font-family: "Lucida Sans Unicode", serif;
+    font-size: 34px;
+    font-weight: bold;
+    padding-left: 20%;
+}
