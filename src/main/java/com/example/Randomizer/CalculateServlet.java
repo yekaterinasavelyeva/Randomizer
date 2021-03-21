@@ -28,16 +28,20 @@ public class CalculateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var answer = request.getParameter("answer");
-        var number1 = request.getParameter("number1");
-        var number2 = request.getParameter("number2");
-        var action = request.getParameter("action");
-        BigDecimal calculatedAnswer = calculateAnswer(number1, number2, action);
-        BigDecimal numericAnswer = BigDecimal.valueOf(Double.parseDouble(answer)).setScale(0, RoundingMode.CEILING);
-
-        if (calculatedAnswer.equals(numericAnswer)) {
-            request.setAttribute("answerIsCorrect", true);
-        } else {
+        if(answer.isBlank()) {
             request.setAttribute("answerIsCorrect", false);
+        } else {
+            var number1 = request.getParameter("number1");
+            var number2 = request.getParameter("number2");
+            var action = request.getParameter("action");
+            BigDecimal calculatedAnswer = calculateAnswer(number1, number2, action);
+            BigDecimal numericAnswer = BigDecimal.valueOf(Double.parseDouble(answer)).setScale(0, RoundingMode.CEILING);
+
+            if (calculatedAnswer.equals(numericAnswer)) {
+                request.setAttribute("answerIsCorrect", true);
+            } else {
+                request.setAttribute("answerIsCorrect", false);
+            }
         }
         request.getRequestDispatcher("/WEB-INF/result.jsp").forward(request, response);
     }
