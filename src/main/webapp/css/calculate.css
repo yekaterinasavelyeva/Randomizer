@@ -29,6 +29,15 @@ input {
     width: 70%!important;
 }
 
+button:focus {
+    outline: none;
+}
+
+button:hover {
+    opacity: 0.7;
+    color: lavender;
+}
+
 img.image {
     position: absolute;
     left:0;
@@ -52,36 +61,18 @@ img.image {
     margin: 5% 10%;
 }
 
-.random {
-    opacity: 1;
-}
-
 .w3-theme-gradient {
-    color: #000 !important;
+    color: #ecf1f1 !important;
     background:-webkit-linear-gradient(top, #a26a7a 25%, #f54242 75%)}
 .w3-theme-gradient {
-    color: #000 !important;
+    color: #ecf1f1 !important;
     background:-moz-linear-gradient(top, #a26a7a 25%, #f54242 75%)}
 .w3-theme-gradient {
-    color: #000 !important;
+    color: #ecf1f1 !important;
     background:-o-linear-gradient(top, #a26a7a 25%, #f54242 75%)}
 .w3-theme-gradient {
-    color: #000 !important;
+    color: #ecf1f1 !important;
     background:-ms-linear-gradient(top, #a26a7a 25%, #f54242 75%)}
 .w3-theme-gradient {
-    color: #000 !important;
+    color: #ecf1f1 !important;
     background: linear-gradient(top, #a26a7a 25%, #f54242 75%)}
-
-.error {
-    color: crimson;
-    font-family: "Lucida Sans Unicode", serif;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.success {
-    color: forestgreen;
-    font-family: "Lucida Sans Unicode", serif;
-    font-size: 12px;
-    font-weight: bold;
-}

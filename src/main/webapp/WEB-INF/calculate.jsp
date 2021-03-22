@@ -17,16 +17,14 @@
     <div class="box w3-display-middle w3-round-xxlarge">
     </div>
     <div class="card w3-card w3-round-xlarge w3-display-middle">
-        <h1 class="random w3-center w3-animate-opacity">Please, calculate: <span class="w3-badge w3-animate-zoom w3-red number">${number1} ${action} ${number2} = </span>
+        <h1 class="w3-center w3-animate-opacity">Please, calculate: <span class="w3-badge w3-animate-zoom w3-red number">${number1} ${action} ${number2} = </span>
         </h1>
 
         <form method="POST">
-            <input type="hidden" id="number1" name="number1" value="${number1}">
-            <input type="hidden" id="number2" name="number2" value="${number2}">
-            <input type="hidden" id="action" name="action" value="${action}">
+            <input type="hidden" id="code" name="code" value="${code}">
             <input class="w3-input w3-border w3-round-large" type="text" id="answer" placeholder="Answer" name="answer" value="${answer}">
             <div class="box">
-                <button type="submit" href="calc" class="w3-button w3-medium w3-round-xxlarge w3-theme-gradient w3-text-white">Check Answer</button>
+                <button type="submit" href="calc" class="w3-button w3-medium w3-round-xxlarge w3-theme-gradient">Check Answer</button>
             </div>
         </form>
     </div>

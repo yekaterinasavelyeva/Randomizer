@@ -19,10 +19,10 @@
 
 
         <c:if test="${answerIsCorrect}">
-            <p class="success">That is right!</p>
+            <p class="success w3-center">That is right!</p>
         </c:if>
         <c:if test="${answerIsCorrect == false}">
-            <p class="error">Answer is wrong!</p>
+            <p class="error w3-center">Answer is wrong!</p>
         </c:if>
 
     </div>
