@@ -22,7 +22,7 @@
 
         <form method="POST">
             <input type="hidden" id="code" name="code" value="${code}">
-            <input class="w3-input w3-border w3-round-large" type="text" id="answer" placeholder="Answer" name="answer" value="${answer}">
+            <input class="w3-input w3-border w3-round-large" type="number" id="answer" placeholder="Answer" name="answer" value="${answer}">
             <div class="box">
                 <button type="submit" href="calc" class="w3-button w3-medium w3-round-xxlarge w3-theme-gradient">Check Answer</button>
             </div>

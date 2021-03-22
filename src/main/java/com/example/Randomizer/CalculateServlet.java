@@ -14,15 +14,19 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.NoSuchAlgorithmException;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 @WebServlet(name = "Calculate", urlPatterns = "/calc")
 public class CalculateServlet extends HttpServlet {
 
-    private static final String [] actions = {"+", "-", "/", "*"};
+    private static final String [] ACTIONS = {"+", "-", "/", "*"};
     private static SecretKey key;
-    private static final IvParameterSpec ivParameterSpec = AESUtil.generateIv();
-    private static final String algorithm = "AES/CBC/PKCS5PADDING";
+    private static final IvParameterSpec IV_PARAMETER_SPEC = AESUtil.generateIv();
+    private static final String ALGORITHM = "AES/CBC/PKCS5PADDING";
+
+    private static final Set<String> previousExamples = ConcurrentHashMap.newKeySet();
 
     static {
         try {
@@ -63,23 +67,25 @@ public class CalculateServlet extends HttpServlet {
             request.setAttribute("answerIsCorrect", false);
             provideResult(request, response);
         }
-        compareAnswer(request, answer);
+        var code = request.getParameter("code");
+        if (previousExamples.contains(code)) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        } else {
+            previousExamples.add(code);
+        }
+        compareAnswer(request, answer, code);
         provideResult(request, response);
     }
 
-    private void compareAnswer(HttpServletRequest request, String answer) {
-        var code = request.getParameter("code");
+    private void compareAnswer(HttpServletRequest request, String answer, String code) {
         var gson = new Gson();
         String answerToDecrypt = decryptCode(code);
         Answer jsonAnswer = gson.fromJson(answerToDecrypt, Answer.class);
         var calculatedAnswer = calculateAnswer(jsonAnswer.getFirstNumber(), jsonAnswer.getSecondNumber(), jsonAnswer.getAction());
         var numericAnswer = BigDecimal.valueOf(Double.parseDouble(answer)).setScale(0, RoundingMode.HALF_UP);
-
-        if (calculatedAnswer.equals(numericAnswer)) {
-            request.setAttribute("answerIsCorrect", true);
-        } else {
-            request.setAttribute("answerIsCorrect", false);
-        }
+        var answerIsCorrect = calculatedAnswer.equals(numericAnswer);
+        request.setAttribute("answerIsCorrect", answerIsCorrect);
     }
 
     private void provideResult(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -90,7 +96,7 @@ public class CalculateServlet extends HttpServlet {
         String encryptedCode = null;
 
         try {
-            encryptedCode = AESUtil.encrypt(algorithm, code, key, ivParameterSpec);
+            encryptedCode = AESUtil.encrypt(ALGORITHM, code, key, IV_PARAMETER_SPEC);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,7 +106,7 @@ public class CalculateServlet extends HttpServlet {
     private String decryptCode(String code) {
         String answerToDecrypt = null;
         try {
-            answerToDecrypt = AESUtil.decrypt(algorithm, code, key, ivParameterSpec);
+            answerToDecrypt = AESUtil.decrypt(ALGORITHM, code, key, IV_PARAMETER_SPEC);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -126,12 +132,12 @@ public class CalculateServlet extends HttpServlet {
     }
 
     private int getRandomNumber() {
-        return 100 + ThreadLocalRandom.current().nextInt(901);
+        return ThreadLocalRandom.current().nextInt(100, 1001);
     }
 
     private String getRandomAction() {
-        int index = ThreadLocalRandom.current().nextInt(actions.length);
-        return actions[index];
+        int index = ThreadLocalRandom.current().nextInt(ACTIONS.length);
+        return ACTIONS[index];
     }
 
 }
